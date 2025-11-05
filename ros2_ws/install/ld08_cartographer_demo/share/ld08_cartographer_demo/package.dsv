@@ -1,0 +1,8 @@
+source;share/ld08_cartographer_demo/hook/cmake_prefix_path.dsv
+source;share/ld08_cartographer_demo/hook/cmake_prefix_path.sh
+source;share/ld08_cartographer_demo/hook/ros_package_path.dsv
+source;share/ld08_cartographer_demo/hook/ros_package_path.sh
+source;share/ld08_cartographer_demo/hook/pkg_config_path.dsv
+source;share/ld08_cartographer_demo/hook/pkg_config_path.sh
+source;share/ld08_cartographer_demo/hook/pkg_config_path_multiarch.dsv
+source;share/ld08_cartographer_demo/hook/pkg_config_path_multiarch.sh

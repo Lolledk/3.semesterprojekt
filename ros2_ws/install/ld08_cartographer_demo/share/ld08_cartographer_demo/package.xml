@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ld08_cartographer_demo</name>
+  <version>0.0.1</version>
+  <description>One-command launcher: LD08 + static TF + Cartographer + occupancy grid.</description>
+  <maintainer email="you@example.com">Peter Ladefoged</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>cartographer_ros</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>ld08_driver</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+</package>

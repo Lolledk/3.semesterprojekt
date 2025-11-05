@@ -1,0 +1,64 @@
+[0.014s] Invoking command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/ladefoged/Documents/3semester/ros2_ws/src/ld08_driver -DCMAKE_INSTALL_PREFIX=/home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver
+[0.136s] -- The C compiler identification is GNU 13.3.0
+[0.220s] -- The CXX compiler identification is GNU 13.3.0
+[0.240s] -- Detecting C compiler ABI info
+[0.333s] -- Detecting C compiler ABI info - done
+[0.338s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.339s] -- Detecting C compile features
+[0.339s] -- Detecting C compile features - done
+[0.349s] -- Detecting CXX compiler ABI info
+[0.445s] -- Detecting CXX compiler ABI info - done
+[0.450s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.450s] -- Detecting CXX compile features
+[0.451s] -- Detecting CXX compile features - done
+[0.455s] -- Found ament_cmake: 2.5.4 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.568s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.654s] -- Found rclcpp: 28.1.12 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.687s] -- Found rosidl_generator_c: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.697s] -- Found rosidl_generator_cpp: 4.6.6 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.716s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.730s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.788s] -- Found rmw_implementation_cmake: 7.3.2 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[0.790s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[0.875s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[0.890s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[0.915s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.971s] -- Found sensor_msgs: 5.3.6 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[1.030s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.83.0/BoostConfig.cmake (found version "1.83.0") found components: system 
+[1.094s] -- Configuring done (1.1s)
+[1.103s] -- Generating done (0.0s)
+[1.107s] -- Build files have been written to: /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver
+[1.120s] Invoked command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake /home/ladefoged/Documents/3semester/ros2_ws/src/ld08_driver -DCMAKE_INSTALL_PREFIX=/home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver
+[1.121s] Invoking command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver -- -j16 -l16
+[1.166s] [ 66%] [32mBuilding CXX object CMakeFiles/ld08_driver.dir/src/lipkg.cpp.o[0m
+[1.166s] [ 66%] [32mBuilding CXX object CMakeFiles/ld08_driver.dir/src/cmd_interface_linux.cpp.o[0m
+[1.166s] [ 66%] [32mBuilding CXX object CMakeFiles/ld08_driver.dir/src/transform.cpp.o[0m
+[1.166s] [ 66%] [32mBuilding CXX object CMakeFiles/ld08_driver.dir/src/slbf.cpp.o[0m
+[1.167s] [ 83%] [32mBuilding CXX object CMakeFiles/ld08_driver.dir/src/main.cpp.o[0m
+[4.967s] [100%] [32m[1mLinking CXX executable ld08_driver[0m
+[5.124s] [100%] Built target ld08_driver
+[5.139s] Invoked command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver -- -j16 -l16
+[5.147s] Invoking command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver
+[5.153s] -- Install configuration: ""
+[5.154s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/launch
+[5.154s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/launch/ld08.launch.py
+[5.154s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/lib/ld08_driver/ld08_driver
+[5.155s] -- Set non-toolchain portion of runtime path of "/home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/lib/ld08_driver/ld08_driver" to ""
+[5.155s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ament_index/resource_index/package_run_dependencies/ld08_driver
+[5.155s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ament_index/resource_index/parent_prefix_path/ld08_driver
+[5.155s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/environment/ament_prefix_path.sh
+[5.155s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/environment/ament_prefix_path.dsv
+[5.155s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/environment/path.sh
+[5.155s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/environment/path.dsv
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/local_setup.bash
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/local_setup.sh
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/local_setup.zsh
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/local_setup.dsv
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/package.dsv
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ament_index/resource_index/packages/ld08_driver
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/cmake/ament_cmake_export_dependencies-extras.cmake
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/cmake/ament_cmake_export_include_directories-extras.cmake
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/cmake/ld08_driverConfig.cmake
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/cmake/ld08_driverConfig-version.cmake
+[5.156s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_driver/share/ld08_driver/package.xml
+[5.158s] Invoked command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver

@@ -1,0 +1,22 @@
+[0.011s] Invoking command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo -- -j16 -l16
+[0.048s] Invoked command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --build /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo -- -j16 -l16
+[0.049s] Invoking command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo
+[0.055s] -- Install configuration: ""
+[0.055s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/launch
+[0.056s] -- Installing: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/launch/full.launch.py
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ament_index/resource_index/package_run_dependencies/ld08_cartographer_demo
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ament_index/resource_index/parent_prefix_path/ld08_cartographer_demo
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/environment/ament_prefix_path.sh
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/environment/ament_prefix_path.dsv
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/environment/path.sh
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/environment/path.dsv
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/local_setup.bash
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/local_setup.sh
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/local_setup.zsh
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/local_setup.dsv
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/package.dsv
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ament_index/resource_index/packages/ld08_cartographer_demo
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/cmake/ld08_cartographer_demoConfig.cmake
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/cmake/ld08_cartographer_demoConfig-version.cmake
+[0.056s] -- Up-to-date: /home/ladefoged/Documents/3semester/ros2_ws/install/ld08_cartographer_demo/share/ld08_cartographer_demo/package.xml
+[0.057s] Invoked command in '/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com /usr/bin/cmake --install /home/ladefoged/Documents/3semester/ros2_ws/build/ld08_cartographer_demo

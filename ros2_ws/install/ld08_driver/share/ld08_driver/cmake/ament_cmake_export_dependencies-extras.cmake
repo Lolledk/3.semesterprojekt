@@ -1,0 +1,1 @@
+/home/ladefoged/Documents/3semester/ros2_ws/build/ld08_driver/ament_cmake_export_dependencies/ament_cmake_export_dependencies-extras.cmake
