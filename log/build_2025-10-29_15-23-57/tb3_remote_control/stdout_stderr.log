@@ -1,0 +1,22 @@
+running egg_info
+writing ../../build/tb3_remote_control/tb3_remote_control.egg-info/PKG-INFO
+writing dependency_links to ../../build/tb3_remote_control/tb3_remote_control.egg-info/dependency_links.txt
+writing entry points to ../../build/tb3_remote_control/tb3_remote_control.egg-info/entry_points.txt
+writing requirements to ../../build/tb3_remote_control/tb3_remote_control.egg-info/requires.txt
+writing top-level names to ../../build/tb3_remote_control/tb3_remote_control.egg-info/top_level.txt
+reading manifest file '../../build/tb3_remote_control/tb3_remote_control.egg-info/SOURCES.txt'
+writing manifest file '../../build/tb3_remote_control/tb3_remote_control.egg-info/SOURCES.txt'
+running build
+running build_py
+copying tb3_remote_control/drive_forward_10cm.py -> /home/parallels/tb3_devspace/build/tb3_remote_control/build/lib/tb3_remote_control
+running install
+running install_lib
+copying /home/parallels/tb3_devspace/build/tb3_remote_control/build/lib/tb3_remote_control/drive_forward_10cm.py -> /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control
+byte-compiling /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/drive_forward_10cm.py to drive_forward_10cm.cpython-312.pyc
+running install_data
+running install_egg_info
+removing '/home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control-0.0.1-py3.12.egg-info' (and everything under it)
+Copying ../../build/tb3_remote_control/tb3_remote_control.egg-info to /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control-0.0.1-py3.12.egg-info
+running install_scripts
+Installing drive_forward_10cm script to /home/parallels/tb3_devspace/install/tb3_remote_control/lib/tb3_remote_control
+writing list of installed files to '/home/parallels/tb3_devspace/build/tb3_remote_control/install.log'

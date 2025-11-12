@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: tb3-remote-control
+Version: 0.0.1
+Summary: Control utilities for TurtleBot3
+Maintainer: Magnus
+Maintainer-email: magnusmeldgaard14@gmail.com
+License: MIT

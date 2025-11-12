@@ -1,0 +1,3 @@
+[console_scripts]
+drive_forward_10cm = tb3_remote_control.drive_forward_10cm:main
+file = tb3_remote_control.file:main
