@@ -18,7 +18,7 @@ class DriveForward(Node):
         self.declare_parameter('speed_mps', 0.1)
         self.declare_parameter('cmd_vel_topic', 'cmd_vel')      # relative name, respects namespaces
         self.declare_parameter('use_stamped', True)             # <-- new
-
+        
         self.distance = float(self.get_parameter('distance_m').value)
         self.speed = float(self.get_parameter('speed_mps').value)
         self.cmd_vel_topic = str(self.get_parameter('cmd_vel_topic').value)
