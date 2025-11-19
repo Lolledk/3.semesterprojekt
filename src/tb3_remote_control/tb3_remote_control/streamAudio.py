@@ -5,6 +5,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from std_msgs.msg import UInt8MultiArray
 from std_srvs.srv import Trigger
+#import whisper
 
 TOPIC = "/audio_wav"
 SERVICE = "/record_wav"

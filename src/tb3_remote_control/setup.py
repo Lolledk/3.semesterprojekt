@@ -23,6 +23,8 @@ setup(
             'drive_forward_10cm = tb3_remote_control.drive_forward_10cm:main',
             'file = tb3_remote_control.file:main',
             'streamAudio.py = tb3_remote_control.streamAudio:main',
+            'audio_drive.py = tb3_remote_control.audio_drive:main',
+            'streamAudioWrt.py = tb3_remote_control.streamAudioWrt:main',
         ],
     },
 )
