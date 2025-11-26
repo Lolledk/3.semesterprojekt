@@ -25,6 +25,7 @@ setup(
             'streamAudio.py = tb3_remote_control.streamAudio:main',
             'audio_drive.py = tb3_remote_control.audio_drive:main',
             'streamAudioWrt.py = tb3_remote_control.streamAudioWrt:main',
+            'steam_drive.py = tb3_remote_control.stream_audio:main',
         ],
     },
 )

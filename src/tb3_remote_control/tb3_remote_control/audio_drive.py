@@ -5,13 +5,14 @@ from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from std_msgs.msg import UInt8MultiArray
 from std_srvs.srv import Trigger
 from geometry_msgs.msg import Twist, TwistStamped
-
+import time
 from faster_whisper import WhisperModel
 
 TOPIC = "/audio_wav"
 SERVICE = "/record_wav"
 OUT = "capture.wav"
 TIMEOUT_S = 30.0
+INTERVAL = 0.1
 
 FORWARD_DISTANCE = 0.10      # 10 cm
 BACKWARD_DISTANCE = 0.10     # 10 cm
@@ -33,6 +34,8 @@ class AudioDrive(Node):
         # Subscribe to audio from TB3
         self.sub = self.create_subscription(UInt8MultiArray, TOPIC, self.on_wav, qos)
 
+        #self.timer = create_timer(INTERVAL, self.timer_callback)
+
         # Service to trigger recording on TB3
         self.cli = self.create_client(Trigger, SERVICE)
         while not self.cli.wait_for_service(timeout_sec=1.0):
@@ -48,9 +51,12 @@ class AudioDrive(Node):
         self.start = time.time()
 
         # Load faster-whisper model once
+        startmodel = time.perf_counter()
         self.get_logger().info("Loading faster-whisper model (base/int8)…")
         self.model = WhisperModel("base", device="cpu", compute_type="int8")
         self.get_logger().info("Model loaded.")
+        endmodel = time.perf_counter()
+        self.get_logger().info(f"Model load time: {endmodel - startmodel:.5f} seconds")
 
         self.got_audio = False
 
@@ -61,10 +67,12 @@ class AudioDrive(Node):
         wav_bytes = bytes(msg.data)
         with open(OUT, "wb") as f:
             f.write(wav_bytes)
+        startwav = time.perf_counter()
         self.get_logger().info(f"Saved WAV ({len(wav_bytes)} bytes). Running ASR...")
 
         # Transcribe
         segments, info = self.model.transcribe(OUT, language="en")
+        endwav = time.perf_counter()
         text = " ".join(seg.text for seg in segments).strip().lower()
         self.get_logger().info(f"ASR result: '{text}'")
         print(f"ASR: {text}")
@@ -149,7 +157,7 @@ def main():
     rclpy.init()
     node = AudioDrive()
     while rclpy.ok():
-        rclpy.spin_once(node, timeout_sec=0.1)
+        rclpy.spin(node)
         if node.got_audio:
             break
 

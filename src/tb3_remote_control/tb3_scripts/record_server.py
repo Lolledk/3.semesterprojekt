@@ -115,6 +115,7 @@ def pcm_to_wav_bytes(pcm: bytes) -> bytes:
         w.writeframes(pcm)          # write all PCM bytes inside the WAV file
     return b.getvalue()             # returns the finished WAV file bytes, nothing is written to disk, everything is in memory
 
+
 class RecordWavServer(Node): # The class inherits from Node
     def __init__(self):                                     # The constructor
         super().__init__("record_wav_server")               # Calls the parent class (Node) constructor, "record_wav_server" is the node name in ROS 2, this is where is registers with ROS graph
