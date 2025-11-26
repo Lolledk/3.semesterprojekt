@@ -70,7 +70,7 @@ class AudioDrive(Node):
         print(f"ASR: {text}")
 
         # -------- COMMAND DISPATCH --------
-        if any(cmd in text for cmd in ("move forward", "forward", "forward")):
+        if any(cmd in text for cmd in ("move forward", "forward", "forward", "go", "Go")):
             self.get_logger().info("Recognized command: MOVE FORWARD")
             self.move_forward()
 
@@ -78,11 +78,11 @@ class AudioDrive(Node):
             self.get_logger().info("Recognized command: MOVE BACKWARD")
             self.move_backward()
 
-        elif "turn left" in text:
+        elif any(cmd in text for cmd in ("turn left", "left")):
             self.get_logger().info("Recognized command: TURN LEFT")
             self.turn_left()
 
-        elif "turn right" in text:
+        elif any(cmd in text for cmd in ("turn right", "right")):
             self.get_logger().info("Recognized command: TURN RIGHT")
             self.turn_right()
 
