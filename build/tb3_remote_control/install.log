@@ -1,7 +1,9 @@
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/file.py
+/home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/streamAudio.py
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/drive_forward_10cm.py
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/__init__.py
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/__pycache__/file.cpython-312.pyc
+/home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/__pycache__/streamAudio.cpython-312.pyc
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/__pycache__/drive_forward_10cm.cpython-312.pyc
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control/__pycache__/__init__.cpython-312.pyc
 /home/parallels/tb3_devspace/install/tb3_remote_control/share/ament_index/resource_index/packages/tb3_remote_control
@@ -16,3 +18,4 @@
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/python3.12/site-packages/tb3_remote_control-0.0.1-py3.12.egg-info/entry_points.txt
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/tb3_remote_control/drive_forward_10cm
 /home/parallels/tb3_devspace/install/tb3_remote_control/lib/tb3_remote_control/file
+/home/parallels/tb3_devspace/install/tb3_remote_control/lib/tb3_remote_control/streamAudio.py

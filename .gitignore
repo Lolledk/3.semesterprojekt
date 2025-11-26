@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# VSCode
+.vscode/
+
+# ROS / Colcon
+install/
+log/
+build/
+.deps/
+
+# OS junk
+.DS_Store
+Thumbs.db
