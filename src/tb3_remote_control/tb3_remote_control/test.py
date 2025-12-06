@@ -10,6 +10,8 @@ from pynput import keyboard
 # colcon build --packages-select tb3_remote_control
 # source ~/tb3_devspace/install/setup.bash
 
+#export TURTLEBOT3_MODEL=burger
+#ros2 launch turtlebot3_bringup robot.launch.py
 
 #!/usr/bin/env python3
 import rclpy
@@ -85,8 +87,8 @@ class ManualDrive(Node):
         super().__init__('manual_drive')
 
         # Parameters set in ROS2 manner
-        self.declare_parameter('linear_acc', 0.05)
-        self.declare_parameter('angular_acc', 0.5)                     # Test value
+        self.declare_parameter('linear_acc', 0.025)
+        self.declare_parameter('angular_acc', 0.25)                     # Test value
         self.declare_parameter('cmd_vel_topic', 'cmd_vel')                      # Standard name to publish velocity commands to for TB3
 
         self.lin_acc = float(self.get_parameter('linear_acc').value)
