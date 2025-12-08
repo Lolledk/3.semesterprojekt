@@ -7,8 +7,8 @@ from pynput import keyboard
 
 """
 
-ros2 launch turtlebot3_navigation2 navigation2.launch.py \
-  map:=$HOME/Desktop/tb3_devspace/maps/my_room_map.yaml \
+ros2 launch turtlebot3_navigation2 navigation2.launch.py
+  map:=$HOME/Desktop/tb3_devspace/maps/my_room_map.yaml
   params_file:=$HOME/Desktop/tb3_devspace/burger_custom.yaml
 
   ANDERS:
@@ -19,6 +19,20 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py \
   to get coordinates run:
   ros2 run tf2_ros tf2_echo map base_link
  """
+
+"""
+amcl_pose publishes AMCL's best estimate of the robot's position and outputs PoseWithCovarianceStamped
+PoseWithCovarianceStamped is
+This differs from the TF transform due to:
+ - localization still converging
+ - covariance is large...
+
+tf2_echo map base_link is the transform tree that connects all robot frames: map -> odom -> base_link
+This is the pose actually used by the navigation system.
+/amcl_pose -> Nav2 interprets it and updates a TF transform called map -> odom, now TF knows where base_link is in map
+
+When these two converge within given tolerances, we are ready to navigate
+"""
 
 # To build and source
 # cd ~/tb3_devspace
@@ -31,71 +45,65 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py \
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist, TwistStamped  # <-- add TwistStamped
+from geometry_msgs.msg import Twist, TwistStamped, PoseWithCovarianceStamped
+from rclpy.executors import MultiThreadedExecutor
 
-"""
-This is where the magic actually starts.
+class InitialPosePublisher(Node):
+    def __init__(self):
+        super().__init__('initial_pose_publisher')
+        self.pub = self.create_publisher(PoseWithCovarianceStamped, # Sends messages of type PoseWithCovarianceStamped
+                                          '/initialpose',           # Publishes on topic /initialpose
+                                          10)                       # QoS
 
-keyboard.Listener(...)
+        self.sub = self.create_subscription(PoseWithCovarianceStamped,
+                                             '/amcl_pose', 
+                                             self.amcl_pose,
+                                             10)
 
-Creates a Listener object that:
+        # Give  Nav2/AMCL a moment to start
+        self.timer = self.create_timer(5.0, self.publish_initial_pose)
 
-Listens to global keyboard events.
-Calls on_press when a key is pressed.
-Calls on_release when a key is released.
+        self.current_pose = None
 
-on_press=on_press
+    def publish_initial_pose(self):
+        msg = PoseWithCovarianceStamped()                           # Creates an empty PoseWithCovarianceStamped message.
+        msg.header.frame_id = 'map'                                 # Initial pose must be given in map frame, same as RViz selects "map" when you click 2D Pose Estimate
+        msg.header.stamp = self.get_clock().now().to_msg()          # Provides the current ROS timestamp, this is required for Nav2 modules
 
-Tells the Listener:
-"Whenever a key is pressed, call this function."
+        "Position components"
+        # Facing along +x
+        msg.pose.pose.position.x = 0.0
+        msg.pose.pose.position.y = 0.0
+        msg.pose.pose.position.z = 0.0
 
-So the on_press function you defined earlier is passed in as a callback.
-on_release=on_release
-Same idea for key releases.
+        # Facing forward (yaw = 0) -> quarternion (0, 0, 0, 1)
+        msg.pose.pose.orientation.z = 0.0
+        msg.pose.pose.orientation.w = 1.0
 
-with ... as listener:
+        # Minimal covariance, these are set to estimate the confidence in the initial position
+        # If you set the covariance too high, the robot will “wander” and AMCL will struggle.
+        # If too low, AMCL may refuse to update because it thinks the pose is perfect.
+        # How to relate this to an actual unit?
+        msg.pose.covariance[0]  = 0.1 # x
+        msg.pose.covariance[7]  = 0.1 # y
+        msg.pose.covariance[35] = 0.1 # yaw
 
-This uses a context manager (the with block) to:
+        self.get_logger().info("Publishing initial pose to /initialpose")
+        self.get_logger().info("")
+        self.pub.publish(msg)
 
-Start the listener automatically when entering the block.
-Stop and clean it up automatically when exiting (after return False or an exception).
-Inside this block, the listener is active.
+        # Such that initial pose is only shared once and not every 2 seconds.
+        self.timer.cancel()
 
-listener.join()
+    def amcl_pose(self, msg):
+        x = msg.pose.pose.position.x
+        y = msg.pose.pose.position.y
+        z = msg.pose.pose.orientation.z
+        w = msg.pose.pose.orientation.w
 
-.join() blocks the main thread and waits until the listener stops.
+        self.current_pose = (x,y,z,w)
 
-In practice, this means:
-The script will not exit immediately.
-It will keep running, listening to keys, until:
-
-You press ESC (which triggers on_release, which returns False, which stops the listener).
-Or the program is otherwise terminated.
-"""
-
-"""
-print("Listening for keyboard inputs...")
-
-def on_press(key):
-    try:
-        print(f"Pressed: {key.char}")
-    except AttributeError:
-        print(f"Special key: {key}")
-
-def on_release(key):
-    if key == keyboard.Key.esc:
-        print("Exiting...")
-        return False
-def hi(key):
-    if key == keyboard.Key.up:
-        print("hi")
-    else:
-        print("not up")
-
-with keyboard.Listener(on_press=hi, on_release=on_release) as listener:
-    listener.join()
-"""
-
+        self.get_logger().info(f"Current pose: x={x:.2f}, y={y:.2f}, w={w:.2f}")
 
 class ManualDrive(Node):
     def __init__(self):
@@ -153,9 +161,10 @@ class ManualDrive(Node):
             self._stop()
 
 # Learn this #
-def main():
+def main1():
     rclpy.init()
     node = ManualDrive()
+    #initial = InitialPosePublisher()
 
     # Define keyboard callbacks *inside* main so they can capture 'node'
     def on_press(key):
@@ -182,6 +191,51 @@ def main():
         node.destroy_node()
         rclpy.shutdown()
 
+#--------------------------------------------------------------------------------------------------------
+
+def main():
+    rclpy.init()
+
+    # Create BOTH nodes
+    manual = ManualDrive()
+    initial = InitialPosePublisher()
+
+    # Use multithreaded executor so both nodes run concurrently
+    executor = MultiThreadedExecutor()
+    executor.add_node(manual)
+    executor.add_node(initial)
+
+    # Start keyboard listener and bind it to manual drive
+    def on_press(key):
+        manual.handle_key(key)
+
+    def on_release(key):
+        if key == keyboard.Key.esc:
+            manual.get_logger().info("ESC pressed -> shutting down.")
+            manual._stop()
+            return False  # Stop listener
+
+    listener = keyboard.Listener(on_press=on_press, on_release=on_release)
+    listener.start()
+
+    try:
+        executor.spin()  # Run both nodes
+    except KeyboardInterrupt:
+        manual.get_logger().info("Ctrl+C detected. Shutting down.")
+    finally:
+        listener.stop()
+        manual.destroy_node()
+        initial.destroy_node()
+        rclpy.shutdown()
+
+
+
+def main1():
+    rclpy.init()
+    node = InitialPosePublisher()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
