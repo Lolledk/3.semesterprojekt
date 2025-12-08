@@ -6,7 +6,11 @@
 from pynput import keyboard
 
 """
-Hej Magnuss
+
+ros2 launch turtlebot3_navigation2 navigation2.launch.py \
+  map:=$HOME/Desktop/tb3_devspace/maps/my_room_map.yaml \
+  params_file:=$HOME/Desktop/tb3_devspace/burger_custom.yaml
+
 """
 
 # To build and source
