@@ -11,7 +11,14 @@ ros2 launch turtlebot3_navigation2 navigation2.launch.py \
   map:=$HOME/Desktop/tb3_devspace/maps/my_room_map.yaml \
   params_file:=$HOME/Desktop/tb3_devspace/burger_custom.yaml
 
-"""
+  ANDERS:
+ros2 launch turtlebot3_navigation2 navigation2.launch.py \
+  map:=$HOME/Workspaces/sem3/map.yaml \
+  params_file:=$HOME/Workspaces/sem3/burger_custom.yaml
+
+  to get coordinates run:
+  ros2 run tf2_ros tf2_echo map base_link
+ """
 
 # To build and source
 # cd ~/tb3_devspace
