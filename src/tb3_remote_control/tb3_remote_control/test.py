@@ -6,7 +6,7 @@
 from pynput import keyboard
 
 """
-Hej Anders
+Hej Magnuss
 """
 
 # To build and source
