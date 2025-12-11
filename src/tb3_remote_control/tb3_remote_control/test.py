@@ -430,16 +430,16 @@ def main():
 
 def main():
     rclpy.init()
-    nav2_goal = Nav2GoalNode()
-    #node = InitialPosePublisher()   # <-- create an instance
+    #nav2_goal = Nav2GoalNode()
+    node = InitialPosePublisher()   # <-- create an instance
 
     try:
-        #rclpy.spin(node)
-        rclpy.spin(nav2_goal)
-        nav2_goal.send_goal(0.5, 0.5, 0.0)
+        rclpy.spin(node)
+        #rclpy.spin(nav2_goal)
+        #nav2_goal.send_goal(0.5, 0.5, 0.0)
     finally:
-        #node.destroy_node()
-        nav2_goal.destroy_node()
+        node.destroy_node()
+        #nav2_goal.destroy_node()
         rclpy.shutdown()
 
 
