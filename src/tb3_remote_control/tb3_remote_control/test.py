@@ -3,6 +3,19 @@
 # The folder tb3_devspace contains ROS packages, we do not wish to mix system-level python packages with ROS, venv allows us to:
 # Isolate python dependencis thereby enabling different projects to have different dependencies.
 
+"""
+To create map
+
+Report: What are Global costmap vs Local costmap in navigation2?
+
+To launch navigation2 with custom map and parameters:
+
+ros2 launch turtlebot3_navigation2 navigation2.launch.py \
+  map:=$HOME/Desktop/tb3_devspace/maps/my_room_map.yaml \
+  params_file:=$HOME/tb3_devspace/burger_custom.yaml
+
+"""
+
 from pynput import keyboard
 
 """
@@ -194,6 +207,8 @@ class ManualDrive(Node):
         self.ang_acc = float(self.get_parameter('angular_acc').value)
         self.vel_cmd_topic = str(self.get_parameter('cmd_vel_topic').value)
 
+        self.max_lin = 0.20  # m/s
+        self.max_ang = 2.5  # rad/s
         self.current_lin = 0.0
         self.current_ang = 0.0
 
@@ -221,6 +236,37 @@ class ManualDrive(Node):
 
     def handle_key(self, key):
         """To interpret keyboard commands"""
+        if key == keyboard.Key.up:
+            if (self.current_lin + self.lin_acc) > self.max_lin:
+                self.current_lin = self.max_lin
+                self.get_logger().info(f"Up pressed, max speed reached: {self.current_lin:.2f} m/s")    
+            else:
+                self.current_lin += self.lin_acc
+                self.get_logger().info(f"Up pressed, new speed: {self.current_lin:.2f} m/s")
+        
+        if key == keyboard.Key.down:
+            if (self.current_lin - self.lin_acc) < -self.max_lin:
+                self.current_lin = -self.max_lin
+                self.get_logger().info(f"Down pressed, max speed reached: {self.current_lin:.2f} m/s")
+            else:
+                self.current_lin -= self.lin_acc
+                self.get_logger().info(f"Down pressed, new speed: {self.current_lin:.2f} m/s")
+        
+        if key == keyboard.Key.left:
+            if (self.current_ang + self.ang_acc) > self.max_ang:
+                self.current_ang = self.max_ang
+                self.get_logger().info(f"left pressed, max speed reached: {self.current_ang:.2f} m/s")
+            else:
+                self.current_ang += self.ang_acc
+                self.get_logger().info(f"left pressed, new speed: {self.current_ang:.2f} m/s")
+        
+        if key == keyboard.Key.right:
+            if (self.current_ang - self.ang_acc) < -self.max_ang:
+                self.current_ang = -self.max_ang
+                self.get_logger().info(f"right pressed, max speed reached: {self.current_ang:.2f} m/s")
+            else:
+                self.current_ang -= self.ang_acc
+                self.get_logger().info(f"right pressed, new speed: {self.current_ang:.2f} m/s")
         if key.char == 'w':  #keyboard.Key.up:
             self.current_lin += self.lin_acc
             self.get_logger().info(f"Up pressed, new speed: {self.current_lin:.2f} m/s")

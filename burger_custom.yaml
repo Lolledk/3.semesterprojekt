@@ -130,12 +130,12 @@ controller_server:
       min_speed_theta: 0.0
       # Add high threshold velocity for turtlebot 3 issue.
       # https://github.com/ROBOTIS-GIT/turtlebot3_simulations/issues/75
-      acc_lim_x: 3.0
+      acc_lim_x: 0.05
       acc_lim_y: 0.0
-      acc_lim_theta: 3.2
-      decel_lim_x: -2.5
+      acc_lim_theta: 1
+      decel_lim_x: -0.05
       decel_lim_y: 0.0
-      decel_lim_theta: -3.2
+      decel_lim_theta: -1
       vx_samples: 20
       vy_samples: 0
       vtheta_samples: 40
@@ -175,8 +175,8 @@ local_costmap:
       plugins: ["obstacle_layer", "voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25
-        cost_scaling_factor: 2.0
+        inflation_radius: 0.28
+        cost_scaling_factor: 5.0
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -263,8 +263,8 @@ global_costmap:
         transform_tolerance: 0.1
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
-        inflation_radius: 0.25
-        cost_scaling_factor: 2.0
+        inflation_radius: 0.28
+        cost_scaling_factor: 5.0
       always_send_full_costmap: true
 
 map_server:
