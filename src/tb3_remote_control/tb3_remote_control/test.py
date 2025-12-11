@@ -25,9 +25,9 @@ ros2 topic echo /amcl_pose
 ros2 run tf2_ros tf2_echo map base_link
 
 
-ros2 launch turtlebot3_navigation2 navigation2.launch.py
-  map:=$HOME/Desktop/tb3_devspace/maps/my_room_map.yaml
-  params_file:=$HOME/Desktop/tb3_devspace/burger_custom.yaml
+ros2 launch turtlebot3_navigation2 navigation2.launch.py \
+  map:=$HOME/tb3_devspace/hmap.yaml \
+  params_file:=$HOME/tb3_devspace/burger_custom.yaml
 
   ANDERS:
 ros2 launch turtlebot3_navigation2 navigation2.launch.py
