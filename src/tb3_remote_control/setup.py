@@ -27,6 +27,7 @@ setup(
             'streamAudioWrt.py = tb3_remote_control.streamAudioWrt:main',
             'steam_drive.py = tb3_remote_control.stream_audio:main',
             'test.py = tb3_remote_control.stream_audio:main',
+            'nav2_goal_node = tb3_remote_control.nav2_goal_node:main',
         ],
     },
 )

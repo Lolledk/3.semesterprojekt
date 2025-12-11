@@ -1,4 +1,4 @@
-image: map.pgm
+image: homemap.pgm
 mode: trinary
 resolution: 0.050
 origin: [-3.892, -4.508, 0]
