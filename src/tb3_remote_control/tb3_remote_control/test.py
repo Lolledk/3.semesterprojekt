@@ -26,7 +26,7 @@ ros2 run tf2_ros tf2_echo map base_link
 
 
 ros2 launch turtlebot3_navigation2 navigation2.launch.py \
-  map:=$HOME/tb3_devspace/hmap.yaml \
+  map:=$HOME/tb3_devspace/homemap.yaml \
   params_file:=$HOME/tb3_devspace/burger_custom.yaml
 
   ANDERS:
