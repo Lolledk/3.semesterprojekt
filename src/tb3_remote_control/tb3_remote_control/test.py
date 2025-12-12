@@ -345,7 +345,7 @@ class Calibrate(Node):
 
 
 """
-"""
+
 # Learn this #
 def main1():
     rclpy.init()
@@ -376,7 +376,7 @@ def main1():
         listener.stop()
         node.destroy_node()
         rclpy.shutdown()
-"""
+
 #--------------------------------------------------------------------------------------------------------
 """
 def main():
@@ -408,7 +408,7 @@ def main():
             # You can add more keys, e.g. 'h' for another goal
 
     def on_release(key):
-        if key == keyboard.Key.esc:
+        if key == keyboard.Key.esc:waaaddds
             manual.get_logger().info("ESC pressed -> shutting down.")
             manual._stop()
             return False  # Stop listener
@@ -444,5 +444,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main1()
     
