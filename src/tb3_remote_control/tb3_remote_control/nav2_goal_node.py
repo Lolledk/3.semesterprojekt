@@ -101,7 +101,7 @@ def main():
 
     try:
         # Pick a goal you know is reachable (same as the CLI example)
-        node.send_goal_and_wait(1.30, 0.0, 40.0)
+        node.send_goal_and_wait(0.3, 0.3, 0.0)
     finally:
         node.destroy_node()
         rclpy.shutdown()

@@ -166,10 +166,6 @@ class AudioDrive(Node):
             elif any(cmd in text for cmd in ("turn right", "right")):
                 self.get_logger().info("Recognized command: TURN RIGHT")
                 self.turn_right()
-            
-            elif any(cmd in text for cmd in ("penis", "Penis")):
-                self.get_logger().info("Recognized command: TURN RIGHT")
-                self.turn_right()
 
             elif "stop" in text:
                 self.get_logger().info("Recognized command: STOP")

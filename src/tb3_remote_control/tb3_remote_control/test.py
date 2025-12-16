@@ -271,18 +271,6 @@ class ManualDrive(Node):
             else:
                 self.current_ang -= self.ang_acc
                 self.get_logger().info(f"right pressed, new speed: {self.current_ang:.2f} m/s")
-        if key.char == 'w':  #keyboard.Key.up:
-            self.current_lin += self.lin_acc
-            self.get_logger().info(f"Up pressed, new speed: {self.current_lin:.2f} m/s")
-        if key.char == 's':  #keyboard.Key.down:
-            self.current_lin -= self.lin_acc
-            self.get_logger().info(f"Down pressed, new speed: {self.current_lin:.2f} m/s")
-        if key.char == 'a':  #keyboard.Key.left:
-            self.current_ang += self.ang_acc
-            self.get_logger().info(f"left pressed, new speed: {self.current_ang:.2f} m/s")
-        if key.char == 'd':  #keyboard.Key.right:
-            self.current_ang -= self.ang_acc
-            self.get_logger().info(f"left pressed, new speed: {self.current_ang:.2f} m/s")
         elif key == keyboard.Key.space:
             self._stop()
 """
