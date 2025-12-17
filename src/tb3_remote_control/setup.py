@@ -26,6 +26,14 @@ setup(
             'audio_drive.py = tb3_remote_control.audio_drive:main',
             'streamAudioWrt.py = tb3_remote_control.streamAudioWrt:main',
             'steam_drive.py = tb3_remote_control.stream_audio:main',
+            'test.py = tb3_remote_control.stream_audio:main',
+            'nav2_goal_node = tb3_remote_control.nav2_goal_node:main',
+            'initial_pose_publisher = tb3_remote_control.initial_pose_publisher:main',
+            'asr_control = tb3_remote_control.asr_control:main',
+            'main.py = tb3_remote_control.main:main',
+            'nav2_goal_node_test = tb3_remote_control.nav2_goal_node:main',
+            'asr_nav2_goal = tb3_remote_control.asr_nav2_goal:main',
+
         ],
     },
 )

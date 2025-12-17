@@ -6,10 +6,13 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from std_msgs.msg import UInt8MultiArray
 from std_srvs.srv import Trigger
-from geometry_msgs.msg import Twist, TwistStamped
+from geometry_msgs.msg import Twist, TwistStamped, PoseStamped
 import time
 from faster_whisper import WhisperModel
 from collections import deque
+from rclpy.action import ActionClient
+from nav2_msgs.action import NavigateToPose
+
 
 TOPIC = "/audio_wav"
 SERVICE = "/record_wav"
@@ -79,6 +82,8 @@ class AudioDrive(Node):
         self.cmd_vel_topic = "/cmd_vel"
         self.pub = self.create_publisher(TwistStamped, self.cmd_vel_topic, 10)
 
+        self.nav_client = ActionClient(self, NavigateToPose, '/navigate_to_pose')
+
         # Trigger recording immediately
         #self.get_logger().info("Calling /record_wav...")
         #self.future = self.cli.call_async(Trigger.Request())
@@ -86,8 +91,8 @@ class AudioDrive(Node):
 
         # Load faster-whisper model once
         startmodel = time.perf_counter()
-        self.get_logger().info("Loading faster-whisper model (base/int8)…")
-        self.model = WhisperModel("base", device="cpu", compute_type="int8")
+        self.get_logger().info("Loading faster-whisper model (small/int8)…")
+        self.model = WhisperModel("small", device="cpu", compute_type="int8")
         self.get_logger().info("Model loaded.")
         endmodel = time.perf_counter()
         self.get_logger().info(f"Model load time: {endmodel - startmodel:.5f} seconds")
@@ -149,23 +154,38 @@ class AudioDrive(Node):
             self.get_logger().info(f"ASR time: {end_asr - start_asr:.5f} seconds")
             print(f"ASR: {text}")
 
+            if len(text) < 4:
+                self.get_logger().info("ASR text too short, skipping command dispatch.")
+                return
 
             # -------- COMMAND DISPATCH --------
-            if any(cmd in text for cmd in ("move forward", "forward", "go")):
+            elif any(cmd in text for cmd in ("move forward", "forward", "go",)):
                 self.get_logger().info("Recognized command: MOVE FORWARD")
                 self.move_forward()
 
-            elif any(cmd in text for cmd in ("move backward", "go back", "backward")):
+            elif any(cmd in text for cmd in ("move backward", "go back", "backward",)):
                 self.get_logger().info("Recognized command: MOVE BACKWARD")
                 self.move_backward()
 
-            elif any(cmd in text for cmd in ("turn left", "left")):
+            elif any(cmd in text for cmd in ("turn left", "left",)):
                 self.get_logger().info("Recognized command: TURN LEFT")
                 self.turn_left()
 
             elif any(cmd in text for cmd in ("turn right", "right")):
                 self.get_logger().info("Recognized command: TURN RIGHT")
                 self.turn_right()
+            
+            elif any(cmd in text for cmd in ("bedroom","bed room",)):
+                self.get_logger().info("Recognized command: NAVIGATE TO BEDROOM")
+                self.send_nav2_goal(-1.3, 1.0, 42.0)  # Example coordinates
+
+            elif any(cmd in text for cmd in ("kitchen",)):
+                self.get_logger().info("Recognized command: NAVIGATE TO KITCHEN")
+                self.send_nav2_goal(0.0, 0.0, 0.0)  # Example coordinates
+
+            elif any(cmd in text for cmd in ("bath","bathroom",)):
+                self.get_logger().info("Recognized command: NAVIGATE TO BATHROOM")
+                self.send_nav2_goal(1.0, 0.6, 35.0)  # Example coordinates
 
             elif "stop" in text:
                 self.get_logger().info("Recognized command: STOP")
@@ -181,6 +201,64 @@ class AudioDrive(Node):
             self.get_logger().info(f"Total processing time for chunk: {end_total - start_total:.5f} seconds")
             # Let Python free audio & wav_bytes when out of scope
             self.processing = False
+
+    # ================= NAV2 HELPERS =================
+
+    def send_nav2_goal(self, x: float, y: float, yaw_deg: float):
+        """Send a Nav2 NavigateToPose goal from this node (async)."""
+
+        if not self.nav_client.wait_for_server(timeout_sec=1.0):
+            self.get_logger().error("Nav2 '/navigate_to_pose' action server NOT available.")
+            return
+
+        goal = NavigateToPose.Goal()
+        pose = PoseStamped()
+        pose.header.frame_id = 'map'
+        pose.header.stamp = self.get_clock().now().to_msg()
+
+        pose.pose.position.x = float(x)
+        pose.pose.position.y = float(y)
+        pose.pose.position.z = 0.0
+
+        yaw = math.radians(yaw_deg)
+        pose.pose.orientation.x = 0.0
+        pose.pose.orientation.y = 0.0
+        pose.pose.orientation.z = math.sin(yaw / 2.0)
+        pose.pose.orientation.w = math.cos(yaw / 2.0)
+
+        goal.pose = pose
+
+        self.get_logger().info(
+            f"Sending Nav2 goal: x={x:.2f}, y={y:.2f}, yaw={yaw_deg:.1f}° in 'map' frame"
+        )
+
+        send_future = self.nav_client.send_goal_async(
+            goal,
+            feedback_callback=self._nav2_feedback_cb
+        )
+        send_future.add_done_callback(self._nav2_goal_response_cb)
+
+    def _nav2_feedback_cb(self, feedback_msg):
+        fb = feedback_msg.feedback
+        if hasattr(fb, 'distance_remaining') and fb.distance_remaining is not None:
+            self.get_logger().info(
+                f"[Nav2 Feedback] Distance remaining: {fb.distance_remaining:.2f} m"
+            )
+
+    def _nav2_goal_response_cb(self, future):
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().warn("Nav2 goal was REJECTED by server.")
+            return
+
+        self.get_logger().info("Nav2 goal ACCEPTED, waiting for result...")
+        result_future = goal_handle.get_result_async()
+        result_future.add_done_callback(self._nav2_result_cb)
+
+    def _nav2_result_cb(self, future):
+        result = future.result()
+        status = result.status
+        self.get_logger().info(f"Nav2 goal finished with status: {status}")
 
 
     # ---- Motion helpers (TwistStamped) ----
@@ -224,12 +302,6 @@ class AudioDrive(Node):
         self.get_logger().info(f"Command: TURN RIGHT {TURN_ANGLE_DEG} deg")
         duration = math.radians(TURN_ANGLE_DEG) / ANG_SPEED
         self.execute_twist(linear_x=0.0, angular_z=-ANG_SPEED, duration=duration)
-
-    def penis_move(self):
-        self.get_logger().info("Command: Penis")
-        duration = 0.5 / FAST_SPEED
-        self.execute_twist(linear_x=FAST_SPEED, angular_z=0.0, duration=duration)
-
 
     def stop_robot(self):
         self.get_logger().info("Command: STOP")

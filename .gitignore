@@ -1,31 +1,43 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-
-# Virtual environments
-.venv/
-venv/
-ENV/
-env/
-
-# Build artifacts
+# ROS2 / colcon build artifacts
 build/
-dist/
-*.egg-info/
-
-# VSCode
-.vscode/
-
-# ROS / Colcon
 install/
 log/
-build/
-.deps/
+.colcon/
+
+# Catkin-style (if any)
+devel/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # OS junk
 .DS_Store
 Thumbs.db
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+Makefile
+CMakeScripts/
+
+# Test / cache
+.pytest_cache/
+coverage/
+htmlcov/
+*.log
+

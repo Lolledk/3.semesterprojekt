@@ -1,4 +1,9 @@
 [console_scripts]
+audio_drive.py = tb3_remote_control.audio_drive:main
 drive_forward_10cm = tb3_remote_control.drive_forward_10cm:main
 file = tb3_remote_control.file:main
+nav2_goal_node = tb3_remote_control.nav2_goal_node:main
+steam_drive.py = tb3_remote_control.stream_audio:main
 streamAudio.py = tb3_remote_control.streamAudio:main
+streamAudioWrt.py = tb3_remote_control.streamAudioWrt:main
+test.py = tb3_remote_control.stream_audio:main

@@ -11,9 +11,14 @@ setup.py
 launch/drive_forward.launch.py
 resource/tb3_remote_control
 tb3_remote_control/__init__.py
+tb3_remote_control/audio_drive.py
 tb3_remote_control/drive_forward_10cm.py
 tb3_remote_control/file.py
+tb3_remote_control/nav2_goal_node.py
 tb3_remote_control/streamAudio.py
+tb3_remote_control/streamAudioWrt.py
+tb3_remote_control/stream_drive.py
+tb3_remote_control/test.py
 test/test_copyright.py
 test/test_flake8.py
 test/test_pep257.py
