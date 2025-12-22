@@ -24,7 +24,7 @@ ros2 topic echo /initialpose
 ros2 topic echo /amcl_pose
 ros2 run tf2_ros tf2_echo map base_link
 
-
+ 
 ros2 launch turtlebot3_navigation2 navigation2.launch.py \
   map:=$HOME/tb3_devspace/homemap.yaml \
   params_file:=$HOME/tb3_devspace/burger_custom.yaml
@@ -396,7 +396,7 @@ def main():
             # You can add more keys, e.g. 'h' for another goal
 
     def on_release(key):
-        if key == keyboard.Key.esc:waaaddds
+        if key == keyboard.Key.esc:
             manual.get_logger().info("ESC pressed -> shutting down.")
             manual._stop()
             return False  # Stop listener
@@ -433,4 +433,3 @@ def main():
 
 if __name__ == '__main__':
     main1()
-    

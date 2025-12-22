@@ -30,8 +30,8 @@ class Nav2GoalNode(Node):
     def _go_to_goal_1_cb(self, request, response):
         """Trigger: send goal (1.30, 0.0, 40 deg) and wait for completion."""
         self.get_logger().info("Service /go_to_goal_1 called, sending Nav2 goal...")
-
-        ok = self.send_goal_and_wait(1.30, 0.0, 40.0)
+        ok = self.send_goal_and_wait(0.069, -0.07, 47.440)
+        #ok = self.send_goal_and_wait(-1.066, -1.180, -135.0)
         response.success = ok
         response.message = "Goal sent" if ok else "Failed to send / complete goal"
         return response
