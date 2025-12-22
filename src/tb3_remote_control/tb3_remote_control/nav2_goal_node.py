@@ -160,7 +160,7 @@ def main():
 
     try:
         # Pick a goal you know is reachable (same as the CLI example)
-        node.send_goal_and_wait(0.3, 0.3, 0.0)
+        #node.send_goal_and_wait(0.3, 0.3, 0.0)
         #node.send_goal_and_wait(0.069, -0.07, 47.440)
         node.send_goal_and_wait(-1.066, -1.180, -135.0) 
         node.save_trajectory_csv()
