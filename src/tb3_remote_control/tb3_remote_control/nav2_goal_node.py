@@ -25,8 +25,8 @@ class Nav2GoalClient(Node):
         self._client = ActionClient(self, NavigateToPose, '/navigate_to_pose')
 
         # TF2 listener
-        self._tf_buffer = tf2_ros.Buffer()
-        self._tf_listener = tf2_ros.TransformListener(self._tf_buffer, self)
+        self.tf_buffer = tf2_ros.Buffer()
+        self.tf_listener = tf2_ros.TransformListener(self.tf_buffer, self)
 
         # Storage for trajectory
         self.trajectory = []
@@ -57,7 +57,7 @@ class Nav2GoalClient(Node):
             # Normal during startup
             pass
 
-    def save_trajectory_csv(self, filename="trajectory.csv"):
+    def save_trajectory_csv(self, filename):
         with open(filename, "w") as f:
             f.write("time,x,y,yaw\n")
             for t, x, y, yaw in self.trajectory:
@@ -160,10 +160,14 @@ def main():
 
     try:
         # Pick a goal you know is reachable (same as the CLI example)
-        #node.send_goal_and_wait(0.3, 0.3, 0.0)
-        #node.send_goal_and_wait(0.069, -0.07, 47.440)
-        node.send_goal_and_wait(-1.066, -1.180, -135.0) 
-        node.save_trajectory_csv()
+        # Start to return
+        #node.send_goal_and_wait(-2.473, -0.087, 97.0)
+        #node.send_goal_and_wait(-2.708, 2.057, 97.0)
+
+        # Return to start
+        #node.send_goal_and_wait(-2.708, 2.057, -83.0)
+        node.send_goal_and_wait(-2.473, -0.087, -83.0)
+        node.save_trajectory_csv("SR015_250.csv")
 
     finally:
         node.destroy_node()

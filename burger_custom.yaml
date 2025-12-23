@@ -176,7 +176,7 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         inflation_radius: 0.15
-        cost_scaling_factor: 5.0
+        cost_scaling_factor: 2.50
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: true
@@ -264,7 +264,7 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         inflation_radius: 0.15
-        cost_scaling_factor: 5.0
+        cost_scaling_factor: 2.50
       always_send_full_costmap: true
 
 map_server:
