@@ -331,7 +331,6 @@ class Calibrate(Node):
         self.pub.publish(msg)
         self.get_logger().info("Stop command published.")
 
-
 """
 
 # Learn this #
